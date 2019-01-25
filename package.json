@@ -1,0 +1,61 @@
+{
+  "name": "instagrambotjs",
+  "description": "Instagram Bot made with love and Node.js",
+  "version": "1.0.0",
+  "main": "bot.js",
+  "author": "Patryk Rzucidło [@ptkdev] <support@ptkdev.io> (https://ptkdev.it)",
+  "license": "GPL-3.0",
+  "homepage": "https://instagram.bot.ptkdev.io",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/social-manager-tools/instagram-bot.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/social-manager-tools/instagram-bot.js/issues"
+  },
+  "scripts": {
+    "start": "node bot.js",
+    "start-forever": "forever -o ./logs/debug.log -e ./logs/errors.log start bot.js",
+    "start-pm2": "PM2_HOME=./.pm2 pm2 -o ./logs/debug.log -e ./logs/errors.log start bot.js",
+    "start-pm2-nolog": "PM2_HOME=./.pm2 pm2 -o /dev/null -e ./logs/errors.log start bot.js ",
+    "stop": "killall node",
+    "stop-forever": "forever stop bot.js",
+    "stop-pm2": "PM2_HOME=./pm2 pm2 stop bot.js",
+    "clean": "rm -rf node_modules && rm -f package-lock.json && npm install",
+    "lint": "eslint ./ --cache --ignore-pattern .gitignore --fix",
+    "precommit-clean": "echo \"123456\" > ./loginpin.txt && echo \"\" > ./logs/errors.log && echo \"\" > ./logs/debug.log && rm -rf /logs/screenshot/*.png && echo \"\" > ./databases/logs.db && echo \"\" > ./databases/fdf.db",
+    "precommit-lint-check": "echo 'Pre-commit lint checks...' && exit 0",
+    "pm2": "PM2_HOME=./.pm2 pm2"
+  },
+  "pre-commit": [
+    "precommit-lint-check",
+    "lint"
+  ],
+  "keywords": [
+    "bot",
+    "ptkdev",
+    "instagram",
+    "instagram-bot",
+    "puppeteer",
+    "selenium",
+    "webdriverio"
+  ],
+  "dependencies": {
+    "instagrambotlib": "latest",
+    "yargs": "latest"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-standard": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-node": "latest",
+    "eslint-plugin-promise": "latest",
+    "eslint-plugin-snakecasejs": "latest",
+    "eslint-plugin-standard": "latest",
+    "pre-commit": "latest",
+    "pm2": "latest"
+  }
+}
